@@ -1,7 +1,9 @@
 package med.voll.api.controller;
 
+import med.voll.api.model.MedicoDTO.DadosDetalhamentoMedico;
 import med.voll.api.model.PacienteDTO.DadosAtualizacaoPaciente;
 import med.voll.api.model.PacienteDTO.DadosCadastroPaciente;
+import med.voll.api.model.PacienteDTO.DadosDetalhamentoPaciente;
 import med.voll.api.model.PacienteDTO.DadosListagemPaciente;
 import jakarta.validation.Valid;
 import med.voll.api.model.domain.Paciente;
@@ -14,6 +16,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("pacientes")
@@ -22,18 +25,23 @@ public class PacienteController {
     private PacienteRepository repository;
     @PostMapping
     @Transactional
-    public void cadastraPaciente(@RequestBody @Valid DadosCadastroPaciente dadosPaciente){
-        repository.save(new Paciente(dadosPaciente));
+    public ResponseEntity cadastraPaciente(@RequestBody @Valid DadosCadastroPaciente dadosPaciente, UriComponentsBuilder uriComponentsBuilder){
+        var paciente = new Paciente(dadosPaciente);
+            repository.save(paciente);
+        var uri = uriComponentsBuilder.path("/pacientes/{id}").buildAndExpand(paciente.getId()).toUri();
+            return ResponseEntity.created(uri).body(new DadosDetalhamentoPaciente(paciente));
     }
     @GetMapping
-    public Page<DadosListagemPaciente> listaOrdenada(@PageableDefault(size = 10, sort = {"nome"}, direction = Sort.Direction.ASC)Pageable paginacao){
-        return repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
+    public ResponseEntity<Page<DadosListagemPaciente>> listaOrdenada(@PageableDefault(size = 10, sort = {"nome"}, direction = Sort.Direction.ASC)Pageable paginacao){
+        var page = repository.findAllByAtivoTrue(paginacao).map(DadosListagemPaciente::new);
+            return ResponseEntity.ok(page);
     }
     @PutMapping
     @Transactional
-    public void atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dadosAtualizacaoPaciente){
+    public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoPaciente dadosAtualizacaoPaciente){
         var paciente = repository.getReferenceById(dadosAtualizacaoPaciente.id());
         paciente.atualizarInformacoes(dadosAtualizacaoPaciente);
+            return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
     }
     @DeleteMapping("/{id}")
     @Transactional

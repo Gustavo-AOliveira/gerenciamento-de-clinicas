@@ -50,6 +50,12 @@ public class PacienteController {
         paciente.excluir(id);
             return ResponseEntity.noContent().build();
     }
+    @GetMapping("/{id}")
+    public ResponseEntity findById(@PathVariable Long id){
+        var paciente = repository.getReferenceById(id);
+            return ResponseEntity.ok(new DadosDetalhamentoPaciente(paciente));
+
+    }
 }
 
 

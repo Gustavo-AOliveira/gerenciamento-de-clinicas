@@ -49,6 +49,12 @@ public class MedicoController {
         medico.excluir(id);
             return ResponseEntity.noContent().build();
     }
+    @GetMapping("/{id}")
+    public ResponseEntity findById(@PathVariable Long id){
+        var medico = repository.getReferenceById(id);
+            return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
+
+    }
 }
 
 

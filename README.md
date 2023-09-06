@@ -31,7 +31,3 @@ Antes de executar o projeto, certifique-se de ter instalado:
 2. Abra o projeto na sua IDE Java preferida (como Eclipse, IntelliJ, NetBeans, etc.).
 3. Compile o projeto para garantir que não haja erros de compilação.
 4. Execute a aplicação.
-
-Observação: O tratamento de exceções foi implementado, e o projeto segue os padrões do protocolo HTTP.
-
-Lembrando que esta é uma visão geral básica e os detalhes reais de implementação e código seriam mais extensos. Além disso, você pode querer fornecer instruções mais detalhadas para configurar a conexão com o banco de dados, configurar o Spring Boot, criar controladores e serviços, lidar com exceções e demonstrar exemplos de endpoints da API para cada operação CRUD.

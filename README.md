@@ -1,4 +1,4 @@
-# API para Sistema de Clínicas - Back-End em Java com Spring Boot e JPA
+# API para Sistema de Clínicas - Back-End em Java com Spring Boot, JPA, Spring Security e a biblioteca Auth0
 
 Este é o repositório do projeto de uma API RESTful em Java, desenvolvido com o framework Spring Boot e JPA, utilizando padrões DTO (Data Transfer Object) para a comunicação e interação com o banco de dados MySQL. A API é destinada para um sistema de clínicas, permitindo a gestão de informações e operações relacionadas ao funcionamento das clínicas, seguindo os padrões do protocolo HTTP.
 

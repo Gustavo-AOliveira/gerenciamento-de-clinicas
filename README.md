@@ -3,9 +3,10 @@
 ## Descrição do Projeto
 
 O projeto consiste em uma API REST que permite realizar operações CRUD (Create, Read, Update, Delete) em um banco de dados MySQL, para gerenciar informações de clínicas, médicos, pacientes e outros recursos pertinentes a um sistema de clínicas. A arquitetura do projeto segue o padrão DTO, que permite a transferência de dados entre a camada de persistência (banco de dados) e a camada de serviços (controladores da API) de forma organizada e eficiente.
+
 Além disso, o projeto utiliza o Spring Security juntamente com a biblioteca Auth0 Java JWT para garantir a segurança e autenticação na API REST. Essa combinação oferece um ambiente confiável para a gestão de identidades e controle de acesso, garantindo que apenas usuários autorizados tenham acesso aos recursos da aplicação.
 
-Utiliza o framework Spring Boot, que agiliza o processo de desenvolvimento, facilitando a configuração e a criação de aplicações Java. O tratamento de exceções também foi implementado para garantir uma experiência mais robusta.
+
 
 ## Funcionalidades
 

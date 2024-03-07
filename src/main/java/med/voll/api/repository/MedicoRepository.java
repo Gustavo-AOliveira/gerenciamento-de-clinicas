@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDateTime;
 
-public interface MedicoRepository  extends JpaRepository<Medico, Long> {
+public interface MedicoRepository extends JpaRepository<Medico, Long> {
     Page<Medico> findAllByAtivoTrue(Pageable paginacao);
     @Query("""
             select m from medico m
@@ -25,9 +25,17 @@ public interface MedicoRepository  extends JpaRepository<Medico, Long> {
             )
             order by rand()
             limit 1
-            
-            
             """)
     Medico randomMedicoDisponivel(Especialidade especialidade, LocalDateTime data);
 
+    @Query("""
+            select m.ativo
+            from Medico m
+            where
+            m.id = :id
+            """)
+    Boolean findAtivoById(Long id);
+
+    Boolean existsByMedicoIdAndData(Long idMedico, LocalDateTime data);
 }
+

@@ -3,12 +3,15 @@ package med.voll.api.services;
 import jakarta.validation.ValidationException;
 import med.voll.api.domain.Consulta.Consulta;
 import med.voll.api.domain.Consulta.DadosAgendamentoConsulta;
+import med.voll.api.domain.Consulta.Validations.ValidadorAgendamentoConsulta;
 import med.voll.api.domain.Medico.Medico;
 import med.voll.api.repository.ConsultaRepository;
 import med.voll.api.repository.MedicoRepository;
 import med.voll.api.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ConsultaService {
@@ -19,6 +22,9 @@ public class ConsultaService {
     @Autowired
     private PacienteRepository pacienteRepository;
 
+    @Autowired
+    private List<ValidadorAgendamentoConsulta> validadores;
+
 
     public void agendar(DadosAgendamentoConsulta data){
 
@@ -28,6 +34,8 @@ public class ConsultaService {
         if(!pacienteRepository.existsById(data.idPaciente())){
             throw new ValidationException("Id do paciente não encontrado");
         }
+
+        validadores.forEach(v -> v.validar(data));
 
         var paciente = pacienteRepository.getReferenceById(data.idPaciente());
         var medico = randomMedico(data);

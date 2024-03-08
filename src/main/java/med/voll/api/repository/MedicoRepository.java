@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
     Page<Medico> findAllByAtivoTrue(Pageable paginacao);
     @Query("""
-            select m from medico m
+            select m from Medico m
             where
             m.ativo = true
             and
@@ -34,8 +34,8 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
             where
             m.id = :id
             """)
-    Boolean findAtivoById(Long id);
+    boolean findAtivoById(Long id);
 
-    Boolean existsByMedicoIdAndData(Long idMedico, LocalDateTime data);
+
 }
 

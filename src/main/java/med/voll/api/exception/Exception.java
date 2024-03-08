@@ -1,6 +1,7 @@
 package med.voll.api.exception;
 
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ValidationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,10 +43,17 @@ public class Exception {
     public ResponseEntity tratarErroAcessoNegado(){
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acesso negado");
     }
-    @ExceptionHandler(java.lang.Exception.class)
-    public ResponseEntity tratarErro500(Exception ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(ex);
+    @ExceptionHandler(ConsultaException.class)
+    public ResponseEntity tratarErroAgendamento(ConsultaException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
+    @ExceptionHandler(ValidationException.class)
+    public ResponseEntity tratarErroValidacao(ValidationException ex){
+        ErrosResponse error = new ErrosResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+        return ResponseEntity.badRequest().body(error);
+
+    }
+
     private record DadosErroValidacao(String campo, String mensagem){
         private DadosErroValidacao(FieldError erro) {
             this(erro.getField(), erro.getDefaultMessage());

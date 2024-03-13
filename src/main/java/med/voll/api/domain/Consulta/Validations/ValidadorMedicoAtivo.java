@@ -15,11 +15,10 @@ public class ValidadorMedicoAtivo implements ValidadorAgendamentoConsulta{
 
         if(data.idMedico() == null){
             return;
-        }else {
-            var medicoAtivo = repository.findAtivoById(data.idMedico());
-            if(!medicoAtivo){
-                throw new ConsultaException("Consulta não pode ser agendada com médico inativo");
-            }
+        }
+        var medicoAtivo = repository.findAtivoById(data.idMedico());
+        if(!medicoAtivo){
+            throw new ConsultaException("Consulta não pode ser agendada com médico inativo");
         }
     }
 }

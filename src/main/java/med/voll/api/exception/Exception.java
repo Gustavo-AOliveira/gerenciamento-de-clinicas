@@ -53,6 +53,11 @@ public class Exception {
         return ResponseEntity.badRequest().body(error);
 
     }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity tratarErroValidacao(IllegalArgumentException ex){
+        ErrosResponse error = new ErrosResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+            return ResponseEntity.badRequest().body(error);
+    }
 
     private record DadosErroValidacao(String campo, String mensagem){
         private DadosErroValidacao(FieldError erro) {

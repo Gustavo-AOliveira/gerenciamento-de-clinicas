@@ -25,7 +25,7 @@ public interface MedicoRepository extends JpaRepository<Medico, Long> {
             )
             order by rand()
             limit 1
-            """)
+          """)
     Medico randomMedicoDisponivel(Especialidade especialidade, LocalDateTime data);
 
     @Query("""

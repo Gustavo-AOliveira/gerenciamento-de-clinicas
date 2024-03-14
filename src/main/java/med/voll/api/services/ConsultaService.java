@@ -5,7 +5,8 @@ import med.voll.api.domain.Consulta.Consulta;
 import med.voll.api.domain.Consulta.DadosAgendamentoConsulta;
 import med.voll.api.domain.Consulta.DadosCancelamentoConsulta;
 import med.voll.api.domain.Consulta.DadosDetalhamentoConsulta;
-import med.voll.api.domain.Consulta.Validations.ValidadorAgendamentoConsulta;
+import med.voll.api.domain.Consulta.Validations.Agendamento.ValidadorAgendamentoConsulta;
+import med.voll.api.domain.Consulta.Validations.Cancelamento.ValidadorCancelamentoConsulta;
 import med.voll.api.domain.Medico.Medico;
 import med.voll.api.exception.ConsultaException;
 import med.voll.api.repository.ConsultaRepository;
@@ -27,6 +28,8 @@ public class ConsultaService {
 
     @Autowired
     private List<ValidadorAgendamentoConsulta> validadores;
+    @Autowired
+    private List<ValidadorCancelamentoConsulta> validadoresCancelamento;
 
 
     public DadosDetalhamentoConsulta agendar(DadosAgendamentoConsulta data){
@@ -68,6 +71,9 @@ public class ConsultaService {
         if(!consultaRepository.existsById(dados.idConsulta())){
             throw new ConsultaException("Consulta não encontrada");
         }
+
+        validadoresCancelamento.forEach(v -> v.validar(dados));
+
         var consulta = consultaRepository.getReferenceById(dados.idConsulta());
         consulta.cancelar(dados.motivo());
     }

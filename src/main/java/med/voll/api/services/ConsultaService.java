@@ -3,9 +3,11 @@ package med.voll.api.services;
 import jakarta.validation.ValidationException;
 import med.voll.api.domain.Consulta.Consulta;
 import med.voll.api.domain.Consulta.DadosAgendamentoConsulta;
+import med.voll.api.domain.Consulta.DadosCancelamentoConsulta;
 import med.voll.api.domain.Consulta.DadosDetalhamentoConsulta;
 import med.voll.api.domain.Consulta.Validations.ValidadorAgendamentoConsulta;
 import med.voll.api.domain.Medico.Medico;
+import med.voll.api.exception.ConsultaException;
 import med.voll.api.repository.ConsultaRepository;
 import med.voll.api.repository.MedicoRepository;
 import med.voll.api.repository.PacienteRepository;
@@ -46,7 +48,7 @@ public class ConsultaService {
             throw new ValidationException("Não existe médico disponível nessa data");
         }
 
-        var consulta = new Consulta(null, medico, paciente, data.data());
+        var consulta = new Consulta(null, medico, paciente, data.data(),null);
         consultaRepository.save(consulta);
 
             return new DadosDetalhamentoConsulta(consulta);
@@ -60,5 +62,13 @@ public class ConsultaService {
             throw new ValidationException("Adicione a especialidade");
         }
             return medicoRepository.randomMedicoDisponivel(data.especialidade(), data.data());
+    }
+
+    public void cancelarAgendamento(DadosCancelamentoConsulta dados) {
+        if(!consultaRepository.existsById(dados.idConsulta())){
+            throw new ConsultaException("Consulta não encontrada");
+        }
+        var consulta = consultaRepository.getReferenceById(dados.idConsulta());
+        consulta.cancelar(dados.motivo());
     }
 }

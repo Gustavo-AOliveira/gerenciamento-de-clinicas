@@ -54,7 +54,7 @@ public class ConsultaService {
 
     private Medico randomMedico(DadosAgendamentoConsulta data) {
         if(data.idMedico() != null){
-            medicoRepository.getReferenceById(data.idMedico());
+            return  medicoRepository.getReferenceById(data.idMedico());
         }
         if(data.especialidade() == null){
             throw new ValidationException("Adicione a especialidade");

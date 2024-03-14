@@ -4,6 +4,16 @@
 
 Este projeto consiste em uma API REST desenvolvida em Java com Spring Boot para gerenciar informações em um sistema de gestão de clínicas médicas. A API oferece operações CRUD (Create, Read, Update, Delete) para as entidades Paciente, Médico e Consulta, permitindo o cadastro, consulta, atualização e exclusão de dados relacionados a essas entidades. Além disso, a API utiliza autenticação e autorização fornecidas pelo Spring Security com a biblioteca Auth0 Java JWT para garantir a segurança e o controle de acesso aos recursos da aplicação.
 
+## Tecnologias Utilizadas
+
+- Java
+- Spring Boot
+- Spring Security
+- Auth0 Java JWT
+- MySQL
+- Padrões de Projeto: SOLID, Design Patterns
+
+
 ## Funcionalidades
 
 ### Para a Entidade Paciente:

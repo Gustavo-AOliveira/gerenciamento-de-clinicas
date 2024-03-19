@@ -20,6 +20,7 @@ Este projeto consiste em uma API REST desenvolvida em Java com Spring Boot para 
 A documentação da API foi elaborada utilizando o Swagger, uma ferramenta que facilita a visualização e interação com os endpoints disponíveis na aplicação. Abaixo está o link para acessar a documentação da API:
 
 [Documentação da API - Swagger](http://localhost:8080/swagger-ui.html)
+
 ### Para a Entidade Paciente:
 
 - **Criação de Paciente:** Permite adicionar novos pacientes ao sistema através de requisições POST.
@@ -77,6 +78,8 @@ A documentação da API foi elaborada utilizando o Swagger, uma ferramenta que f
  /pacientes/id
 }
 ```
+
+
 ### Para a Entidade Médico:
 
 - **Criação de Médico:** Permite adicionar novos médicos ao sistema através de requisições POST.
@@ -144,6 +147,8 @@ A documentação da API foi elaborada utilizando o Swagger, uma ferramenta que f
   }
   ```
 
+
+
 ### Para a Entidade Consulta:
 
 - **Agendamento de Consulta:** Permite agendar consultas entre médicos e pacientes, registrando a data e hora da consulta através de requisições POST.
@@ -165,6 +170,8 @@ A documentação da API foi elaborada utilizando o Swagger, uma ferramenta que f
   "motivo": "PACIENTE_DESISTIU"
   }
   ```
+
+
 
 ### Funcionalidades Adicionais:
 

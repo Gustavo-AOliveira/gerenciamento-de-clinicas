@@ -13,6 +13,7 @@ Este projeto consiste em uma API REST desenvolvida em Java com Spring Boot para 
 - Auth0 Java JWT
 - MySQL
 - Padrões de Projeto: SOLID, Design Patterns
+- Swagger 
 
 
 ## Documentação da API

@@ -16,11 +16,10 @@ Este projeto consiste em uma API REST desenvolvida em Java com Spring Boot para 
 - Swagger 
 
 
-## Documentação da API
-
-A documentação da API foi elaborada utilizando o Swagger, uma ferramenta que facilita a visualização e interação com os endpoints disponíveis na aplicação. Abaixo está o link para acessar a documentação da API:
-
 ## Documentação da API - Swagger
+
+A documentação da API foi elaborada utilizando o Swagger, uma ferramenta que facilita a visualização e interação com os endpoints disponíveis na aplicação. 
+
 
 ### Para a Entidade Paciente:
 

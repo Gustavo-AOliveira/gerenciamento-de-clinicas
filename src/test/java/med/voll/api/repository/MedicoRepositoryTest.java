@@ -64,8 +64,6 @@ class MedicoRepositoryTest {
     }
 
 
-
-
     private void cadastrarConsulta(Medico medico, Paciente paciente, LocalDateTime data) {
         em.persist(new Consulta(null, medico, paciente, data));
     }
